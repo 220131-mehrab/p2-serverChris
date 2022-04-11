@@ -1,10 +1,10 @@
-package com.revature.ComputerServer.Service;
+package com.revature.servers.services;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
 import java.util.Collection;
 
-import com.revature.ComputerServer.Model.Server;
+import com.revature.servers.model.Server;
 
 public interface ServerService {
     Server create(Server server);

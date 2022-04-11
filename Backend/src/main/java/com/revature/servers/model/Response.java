@@ -1,4 +1,4 @@
-package com.revature.ComputerServer.Model;
+package com.revature.servers.model;
 
 import java.time.LocalDateTime;
 import java.util.Map;

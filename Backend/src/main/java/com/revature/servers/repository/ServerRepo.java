@@ -1,6 +1,6 @@
-package com.revature.ComputerServer.Repository;
+package com.revature.servers.repository;
 
-import com.revature.ComputerServer.Model.Server;
+import com.revature.servers.model.Server;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

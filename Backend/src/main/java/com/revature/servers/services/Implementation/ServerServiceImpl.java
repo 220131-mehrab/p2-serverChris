@@ -1,20 +1,20 @@
-package com.revature.ComputerServer.Service.Implementation;
+package com.revature.servers.services.Implementation;
 
 import java.io.IOException;
 import java.net.InetAddress;
 import java.util.Collection;
 import java.util.Random;
 
-import com.revature.ComputerServer.Enumeration.Status;
-import com.revature.ComputerServer.Model.Server;
-import com.revature.ComputerServer.Service.ServerService;
+import com.revature.servers.enumeration.Status;
+import com.revature.servers.model.Server;
+import com.revature.servers.services.ServerService;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.revature.ComputerServer.Repository.ServerRepo;
+import com.revature.servers.repository.ServerRepo;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

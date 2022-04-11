@@ -1,4 +1,4 @@
-package com.revature.ComputerServer.Enumeration;
+package com.revature.servers.enumeration;
 
 public enum Status {
     SERVER_UP("SERVER_UP"),

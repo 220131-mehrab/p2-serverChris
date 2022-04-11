@@ -1,11 +1,13 @@
-package com.revature.ComputerServer.resource;
+package com.revature.servers.resource;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Map;
 
-import com.revature.ComputerServer.Model.Response;
-import com.revature.ComputerServer.Model.Server;
-import com.revature.ComputerServer.Service.Implementation.ServerServiceImpl;
+import com.revature.servers.model.Response;
+import com.revature.servers.model.Server;
+import com.revature.servers.services.Implementation.ServerServiceImpl;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,9 +16,11 @@ import lombok.RequiredArgsConstructor;
 
 import javax.validation.Valid;
 
+import static com.revature.servers.enumeration.Status.SERVER_UP;
 import static java.time.LocalDateTime.now;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
+import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
 @RestController
 @RequestMapping("/server")
@@ -79,6 +83,25 @@ public class ServerResource {
                         .build()
 
         );
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Response> deleteServer(@PathVariable("id") Long id){
+        return ResponseEntity.ok(
+                Response.builder()
+                        .timeStamp(now())
+                        .data(Map.of("deleted", serverService.delete(id)))
+                        .message("Server deleted")
+                        .status(OK)
+                        .statusCode(OK.value())
+                        .build()
+
+        );
+    }
+
+    @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
+    public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
+        return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Downloads/images/" + fileName));
     }
 
 }

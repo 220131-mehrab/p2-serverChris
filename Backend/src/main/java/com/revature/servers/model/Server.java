@@ -14,6 +14,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 
+/***
+ * This concrete Server class has the following fields for functionality use
+ *
+ * <ul>
+ *     <li>Server Id</li>
+ *     <li>Server Name</li>
+ *     <li>Server Memory Storage</li>
+ *     <li>Server/System type</li>
+ *     <li>Server Image Url</li>
+ *     <li>Server Status</li>
+ * </ul>
+ *
+ */
+
 @Entity
 @Data
 @NoArgsConstructor

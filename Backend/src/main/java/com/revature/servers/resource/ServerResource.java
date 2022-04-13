@@ -22,12 +22,21 @@ import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 import static org.springframework.http.MediaType.IMAGE_PNG_VALUE;
 
+/***
+ *  This ServerResource class is the controller to map out our implemented interface
+ *
+ */
+
 @RestController
 @RequestMapping("/server")
 @RequiredArgsConstructor
 public class ServerResource {
     private final ServerServiceImpl serverService;
 
+    /***
+     *  A map to get the list of the servers
+     *
+     */
     @GetMapping("/list")
     public ResponseEntity<Response> getServers(){
         return ResponseEntity.ok(
@@ -42,6 +51,10 @@ public class ServerResource {
         );
     }
 
+    /***
+     *  A map to get ping by ipaddress
+     *
+     */
     @GetMapping("/ping/{ipAddress}")
     public ResponseEntity<Response> pingServer(@PathVariable("ipAddress") String ipAddress) throws IOException {
         Server server = serverService.ping(ipAddress);
@@ -57,6 +70,10 @@ public class ServerResource {
         );
     }
 
+    /***
+     *  A map to post a created server
+     *
+     */
     @PostMapping("/save")
     public ResponseEntity<Response> saveServer(@RequestBody @Valid Server server) {
         return ResponseEntity.ok(
@@ -71,6 +88,9 @@ public class ServerResource {
         );
     }
 
+    /***
+     *  A map to get a server by id
+     */
     @GetMapping("/get/{id}")
     public ResponseEntity<Response> getServer(@PathVariable("id") Long id){
         return ResponseEntity.ok(
@@ -85,6 +105,10 @@ public class ServerResource {
         );
     }
 
+    /***
+     *  A map to delete a server
+     *
+     */
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Response> deleteServer(@PathVariable("id") Long id){
         return ResponseEntity.ok(
@@ -99,6 +123,10 @@ public class ServerResource {
         );
     }
 
+    /***
+     *  A map to get the url of the image path
+     *
+     */
     @GetMapping(path = "/image/{fileName}", produces = IMAGE_PNG_VALUE)
     public byte[] getServerImage(@PathVariable("fileName") String fileName) throws IOException {
         return Files.readAllBytes(Paths.get(System.getProperty("user.home") + "Downloads/images/" + fileName));

@@ -19,6 +19,12 @@ import com.revature.servers.repository.ServerRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+/***
+ * This ServerServiceImpl class implements the ServerService interface
+ *
+ */
+
+
 @RequiredArgsConstructor
 @Service
 @Transactional
@@ -27,7 +33,10 @@ public class ServerServiceImpl implements ServerService{
 
     private final ServerRepo serverRepo;
 
-
+    /***
+     *  Implementing create interface to save a new server to the Server database
+     *
+     */
     @Override
     public Server create(Server server) {
         log.info("Saving new server: {}", server.getName());
@@ -35,24 +44,41 @@ public class ServerServiceImpl implements ServerService{
         return serverRepo.save(server);
     }
 
+    /***
+     *  Implementing list interface to fetch all servers from the database
+     *
+     */
     @Override
     public Collection<Server> list(int limit) {
-        log.info("Fetching all server");
+        log.info("Fetching all servers");
         return serverRepo.findAll(PageRequest.of(0, limit)).toList();
     }
 
+    /***
+     *  Implementing get interface to fetch a server from the database by id
+     *
+     */
     @Override
     public Server get(Long id) {
         log.info("Fetching server by id: {}", id);
         return serverRepo.findById(id).get();
     }
 
+    /***
+     *  Implementing update interface to update the Server database
+     *
+     */
     @Override
     public Server update(Server server) {
         log.info("Updating server: {}", server.getName());
         return serverRepo.save(server);
     }
 
+
+    /***
+     *  Implementing delete interface to delete a server from the database by id
+     *
+     */
     @Override
     public Boolean delete(Long id) {
         log.info("Deleting server: {}", id);
@@ -60,6 +86,10 @@ public class ServerServiceImpl implements ServerService{
         return Boolean.TRUE;
     }
 
+    /***
+     *  Implementing ping interface to ping a server from the database by ipAddress
+     *
+     */
     @Override
     public Server ping(String ipAddress) throws IOException {
         log.info("Pinging server IP: {}", ipAddress);
@@ -69,7 +99,11 @@ public class ServerServiceImpl implements ServerService{
         serverRepo.save(server);
         return server;
     }
-    
+
+    /***
+     *  Implementing the image url and path
+     *
+     */
     private String setServerImageUrl() {
         String[] imageNames = {"business3.png", "donate.png", "finance.png"};
 

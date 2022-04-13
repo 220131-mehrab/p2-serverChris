@@ -20,6 +20,7 @@ public class computerServerApplication {
 		SpringApplication.run(computerServerApplication.class, args);
 	}
 
+	//Data/Servers to test the program
 	@Bean
 	CommandLineRunner run(ServerRepo serverRepo){
 		return args -> {
@@ -29,6 +30,9 @@ public class computerServerApplication {
 		};
 	}
 
+	//To ensure trust in the connection to the frontend
+	//Unfortunately there was an error for establishing this code
+	/**
 	@Bean
 	public CorsFilter corsFilter() {
 		UrlBasedCorsConfigurationSource urlBasedCorsConfigurationSource = new UrlBasedCorsConfigurationSource();
@@ -42,7 +46,10 @@ public class computerServerApplication {
 				"Access-Control-Allow-Origin", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Filename"));
 		corsConfiguration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"));
 		urlBasedCorsConfigurationSource.registerCorsConfiguration("/**", corsConfiguration);
+
+		//I don't know why the configuration source is not convertible to the filter in order to return the filter.
+
 		return new CorsFilter(urlBasedCorsConfigurationSource);
-	}
+	}**/
 
 }

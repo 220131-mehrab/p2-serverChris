@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import com.revature.servers.model.Response;
 import com.revature.servers.model.Server;
@@ -38,7 +39,8 @@ public class ServerResource {
      *
      */
     @GetMapping("/list")
-    public ResponseEntity<Response> getServers(){
+    public ResponseEntity<Response> getServers() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
         return ResponseEntity.ok(
                 Response.builder()
                         .timeStamp(now())

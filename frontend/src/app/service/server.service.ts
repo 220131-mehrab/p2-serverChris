@@ -43,8 +43,19 @@ export class ServerService {
    suscriber => {
      console.log(response);
      suscriber.next(
-       status === Status.ALL ? { ...response, message: `Servers filtered by ${status} status`}
-     )
+       status === Status.ALL ? { ...response, message: `Servers filtered by ${status} status`} :
+       {
+         ...response,
+         message: response.data.servers
+          .filter(server => server.status === status).length > 0 ? `servers filtered by ${status === Status.SERVER_UP ? 'SERVER UP' : 'SERVER DOWN'} status`
+          : `No servers of ${status} found`,
+          data: {
+            servers: response.data.servers
+              ?.filter(server => server.status === status)
+          }
+       }
+     );
+     suscriber.complete();
    }
  )
  .pipe(
